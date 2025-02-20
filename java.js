@@ -1,27 +1,24 @@
-const number = document.getElementById("san");
+function addComment() {
+    let input = document.getElementById("input");
+    let text = input.value.trim();
+    if (text === "") return;
 
-let bashtapkySan = 0;
-const btn = document.getElementsByClassName("btn");
+    const commentDiv = document.createElement("div");
+    commentDiv.className = "comment";
+    
+    const textSpan = document.createElement("span");
+    textSpan.textContent = text;
 
-btn[0].onclick = () => {
-    bashtapkySan++; 
-    number.innerText = bashtapkySan;
+    const deleteButton = document.createElement("button");
+    deleteButton.textContent = "Delete";
+    deleteButton.onclick = ()=> {
+        commentDiv.remove();
+    };
 
-};
+    commentDiv.appendChild(textSpan); 
+    commentDiv.appendChild(deleteButton);
 
-btn[1].onclick = () => {
-    if (bashtapkySan > 0) { 
-        bashtapkySan--;
-        number.innerText = bashtapkySan;
-
-    }
-};
-
-btn[2].onclick = () => {
-    onNumber();
-};
-
-function onNumber() {
-    bashtapkySan = 0;
-    number.innerText = bashtapkySan;
+    document.getElementById("commentsContainer").appendChild(commentDiv);
+    input.value = "";
 }
+
